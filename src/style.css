@@ -1,7 +1,14 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-primary: #16181d;
+  --background-secondary: #343a46;
+  --color-primary: #ebecf0;
+  --color-secondary: #149eca;
 }
 
 body {
@@ -9,17 +16,97 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-primary);
+  color: var(--color-primary);
+}
+
+.markdownPreviewer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#editor,
+#preview {
+  background-color: #23272f;
+  width: 80vw;
+  height: 40vh;
+  overflow: auto;
+  padding: 2rem 3rem;
+  border-radius: 0 0 5px 5px;
+}
+
+textarea {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  color: inherit;
+}
+.headers {
+  font-size: 1.25rem;
+  padding: 1rem 3rem;
+  background-color: var(--color-secondary);
+  border-radius: 5px 5px 0 0;
+  color: var(--color-primary);
+}
+
+#preview {
+  line-height: 1.5;
+}
+
+#preview a {
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+#preview blockquote {
+  padding-left: 1rem;
+  margin-left: 1.5rem;
+  border-left: 3px solid var(--color-secondary);
+  font-style: italic;
+}
+#preview pre {
+  padding: 0.25rem;
+  border-radius: 3px;
+  background-color: var(--background-secondary);
+}
+#preview code {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0.25rem;
+  background-color: var(--background-secondary);
 }
 
 .description {
   text-align: center;
-  position: absolute;
-  bottom: 3%;
+
   font-size: 70%;
   width: 100vw;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
 }
 .description a {
   text-decoration: none;
   color: inherit;
+}
+.description a:hover {
+  color: var(--color-secondary);
+}
+
+@media only screen and (min-width: 1024px) {
+  .markdownPreviewer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 20px;
+  }
+
+  #editor,
+  #preview {
+    width: 42vw;
+    height: 82vh;
+  }
 }
