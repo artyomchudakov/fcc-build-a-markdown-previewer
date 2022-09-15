@@ -1,47 +1,42 @@
 import { useState, useEffect } from 'react';
 import { ProjectDescription } from './ProjectDescription';
+import { initialEditorText } from './helper';
 import { marked } from 'marked';
 import './style.css';
 
 export default function MarkdownPreviewer() {
-  const initialText = `1. List item one.
-+
-List item one continued with a second paragraph followed by an
-Indented block.
-+
-.................
-$ ls *.sh
-$ mv *.sh ~/tmp
-.................`;
-  const [value, setValue] = useState(initialText);
-  // if (value) previewer(value);
+  const [value, setValue] = useState(initialEditorText);
   useEffect(() => {
     parseAndDisplay(value);
   }, [value]);
   return (
-    <section className="markdownPreviewer">
-      <div className="container">
-        <div className="headers">
-          <p>Editor</p>
-        </div>
+    <div className="markdownPreviewer">
+      <section>
+        <TitleSection title={'Editor'} />
         <textarea
           id="editor"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         ></textarea>
-      </div>
-      <div className="container">
-        <div className="headers">
-          <p>Preview</p>
-        </div>
+      </section>
+      <section>
+        <TitleSection title={'Preview'} />
         <div id="preview"></div>
-      </div>
+      </section>
       <ProjectDescription name="Build a Markdown Previewer" />
-    </section>
+    </div>
   );
 }
 
 function parseAndDisplay(userInput) {
   const container = document.getElementById('preview');
   container.innerHTML = marked.parse(userInput);
+}
+
+function TitleSection({ title }) {
+  return (
+    <div className="headers">
+      <p>{title}</p>
+    </div>
+  );
 }
