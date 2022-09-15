@@ -30,6 +30,10 @@ export default function MarkdownPreviewer() {
 
 function parseAndDisplay(userInput) {
   const container = document.getElementById('preview');
+  marked.setOptions({
+    gfm: true,
+    breaks: true,
+  });
   container.innerHTML = marked.parse(userInput);
 }
 
