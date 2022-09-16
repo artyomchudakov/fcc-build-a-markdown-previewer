@@ -30,12 +30,10 @@ ${image}
 - Insert code, using 2 backticks \`<article></article>\`
 
 
-
 - Some multiline code
 ${multilineCode}
 
 ##### TEXT EDITING
-
 
 ***strong emph***
 
@@ -45,9 +43,8 @@ Blockquote
 
 > blockquote
 
-
----
 Read more about Markdown hier:  
 1. [GitHub Flavored Markdown Spec](https://github.github.com/gfm/#block-quotes)
 2. [Markdown guide](https://www.markdownguide.org/cheat-sheet/)
+
 `;
