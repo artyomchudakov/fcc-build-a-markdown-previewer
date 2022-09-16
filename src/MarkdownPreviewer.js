@@ -1,29 +1,37 @@
 import { useState, useEffect } from 'react';
 import { ProjectDescription } from './ProjectDescription';
-import { initialEditorText } from './helper';
+import { initialEditorText } from './initialEditorText';
 import { marked } from 'marked';
 import './style.css';
 
 export default function MarkdownPreviewer() {
-  const [value, setValue] = useState(initialEditorText);
+  const [userInput, setUserInput] = useState(initialEditorText);
+
   useEffect(() => {
-    parseAndDisplay(value);
-  }, [value]);
+    parseAndDisplay(userInput);
+  }, [userInput]);
+
   return (
-    <div className="markdownPreviewer">
-      <section>
-        <TitleSection title={'Editor'} />
-        <textarea
-          id="editor"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        ></textarea>
-      </section>
-      <section>
-        <TitleSection title={'Preview'} />
-        <div id="preview"></div>
-      </section>
-      <ProjectDescription name="Build a Markdown Previewer" />
+    <div>
+      <h1 className="project-name">Markdown Previewer</h1>
+      <div className="markdownPreviewer">
+        <section>
+          <SectionTitle title={'Editor'} />
+          <textarea
+            id="editor"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+          ></textarea>
+        </section>
+        <section>
+          <SectionTitle title={'Preview'} />
+          <div id="preview"></div>
+        </section>
+        <ProjectDescription
+          challengeLink="https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-markdown-previewer"
+          challengeName="Build a Markdown Previewer"
+        />
+      </div>
     </div>
   );
 }
@@ -37,7 +45,7 @@ function parseAndDisplay(userInput) {
   container.innerHTML = marked.parse(userInput);
 }
 
-function TitleSection({ title }) {
+function SectionTitle({ title }) {
   return (
     <div className="headers">
       <p>{title}</p>
