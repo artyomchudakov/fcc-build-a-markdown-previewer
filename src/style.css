@@ -19,11 +19,14 @@ body {
   background-color: var(--background-primary);
   color: var(--color-primary);
 }
+.project-name {
+  padding: 20px;
+  text-align: center;
+}
 
 .markdownPreviewer {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
   justify-content: center;
   align-items: center;
   gap: 20px;
